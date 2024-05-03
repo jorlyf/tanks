@@ -34,6 +34,7 @@ void ServerNetwork::processOpenedClosedSockets()
 		_clients.push_back(std::make_unique<ServerClient>(playerGuid));
 		std::cout << "Player connected." << std::endl;
 		_world->addPlayer(playerGuid);
+		_world->spawnTank(playerGuid);
 	}
 	_openedSockets.clear();
 	_openedSocketsMutex.unlock();
@@ -44,7 +45,7 @@ void ServerNetwork::processOpenedClosedSockets()
 		auto it = std::find_if(_clients.cbegin(), _clients.cend(), [playerGuid](const std::unique_ptr<ServerClient>& client) { return client->getGuid() == playerGuid; });
 		if (it != _clients.cend())
 		{
-			std::cout << "Player connected." << std::endl;
+			std::cout << "Player disconnected." << std::endl;
 			_world->removePlayer(playerGuid);
 		}
 	}

@@ -6,9 +6,11 @@
 #include <SFML/Graphics.hpp>
 #include "Window.h"
 #include "WorldState.h"
+#include "Map.h"
 
 class Bullet;
 class Player;
+class Map;
 
 class World
 {
@@ -16,8 +18,12 @@ class World
 	std::list<std::unique_ptr<Player>> _players;
 	std::list<std::unique_ptr<Bullet>> _bullets;
 	WorldState _worldState;
+	
+	std::unique_ptr<Map> _map = nullptr;
 
 	unsigned int _nextBulletId = 0;
+
+	std::list<unsigned int> _bulletIdsToDelete;
 
 	void updateWorldState();
 
@@ -29,10 +35,15 @@ public:
 	void synchronizeWorldState(const WorldState& worldState);
 	WorldState getWorldState() const;
 	Player* getPlayer(const GUID& guid) const;
+	std::list<std::unique_ptr<Player>>* getPlayers();
 	void addPlayer(const GUID& guid);
 	void removePlayer(const GUID& guid);
+	void spawnTank(const GUID& guid);
+	void spawnTank(const GUID& guid, const sf::Vector2f& position, const float rotation);
+	void spawnTank(Player* player, const sf::Vector2f& position, const float rotation);
 	Bullet* getBullet(const unsigned int id) const;
 	void deleteBullet(const unsigned int id);
-	void spawnPlayer(const GUID& guid);
 	void spawnBullet(const GUID& playerGuid, const sf::Vector2f& position, const sf::Vector2f& direction);
+	Map* getMap() const;
+	void setMapName(const std::string& mapName);
 };

@@ -3,6 +3,8 @@
 #include "utils.h"
 #include "DeltaTime.h"
 #include "TextureManager.h"
+#include "World.h"
+#include "MapBlock.h"
 
 void Tank::initSprite()
 {
@@ -14,6 +16,36 @@ void Tank::initSprite()
 	_sprite.setPosition(_position);
 }
 
+bool Tank::isCollideMap(const sf::Vector2f& position, const float rotation)
+{
+	_sprite.setPosition(position);
+	_sprite.setRotation(rotation + 90.f);
+
+	bool isCollide = false;
+
+	Map* map = _world->getMap();
+	if (map != nullptr)
+	{
+		std::map<sf::Vector2i, std::unique_ptr<MapBlock>, Vector2iComparator>* blocks = map->getBlocks();
+		for (auto it = blocks->cbegin(); it != blocks->cend(); it++)
+		{
+			MapBlock* block = it->second.get();
+			if (block == nullptr) continue;
+			RectCollider blockCollider = block->getCollider();
+			if (_collider.intersects(blockCollider))
+			{
+				isCollide = true;
+				break;
+			}
+		}
+	}
+
+	_sprite.setPosition(_position);
+	_sprite.setRotation(_rotation + 90.f);
+
+	return isCollide;
+}
+
 void Tank::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(_sprite);
@@ -22,10 +54,12 @@ void Tank::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(_collider);
 }
 
-Tank::Tank(World* world, Player* player)
+Tank::Tank(World* world, Player* player, const sf::Vector2f position, const float rotation)
 {
 	_world = world;
 	_player = player;
+	_position = position;
+	_rotation = normalizeAngle(rotation);
 
 	_cannon = std::make_unique<TankCannon>(this, 0.f);
 
@@ -49,6 +83,7 @@ void Tank::moveForward()
 	sf::Vector2f direction = angleToDirection(_rotation);
 	float dt = DeltaTime::getDt();
 	const sf::Vector2f position = _position + direction * _speed * DeltaTime::getDt();
+	if (isCollideMap(position, _rotation)) return;
 	setPosition(position);
 }
 
@@ -56,18 +91,21 @@ void Tank::moveBackward()
 {
 	sf::Vector2f direction = -angleToDirection(_rotation);
 	const sf::Vector2f position = _position + direction * _speed * DeltaTime::getDt();
+	if (isCollideMap(position, _rotation)) return;
 	setPosition(position);
 }
 
 void Tank::rotateLeft()
 {
 	const float rotation = _rotation - _rotationSpeed * DeltaTime::getDt();
+	if (isCollideMap(_position, rotation)) return;
 	setRotation(rotation);
 }
 
 void Tank::rotateRight()
 {
 	const float rotation = _rotation + _rotationSpeed * DeltaTime::getDt();
+	if (isCollideMap(_position, rotation)) return;
 	setRotation(rotation);
 }
 
@@ -109,4 +147,15 @@ Player* Tank::getPlayer() const
 TankCannon* Tank::getCannon() const
 {
 	return _cannon.get();
+}
+
+float Tank::damage(const float damage)
+{
+	setHp(_hp - damage);
+	return getHp();
+}
+
+RectCollider Tank::getCollider() const
+{
+	return _collider;
 }

@@ -105,6 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Common\code\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,11 +135,18 @@
     <ClCompile Include="ClientNetwork.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="FolderPathManager.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameNetwork.cpp" />
     <ClCompile Include="GamePacketTypes.h" />
+    <ClCompile Include="GhostMapBlock.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapBlock.cpp" />
+    <ClCompile Include="MapEditorEngine.cpp" />
+    <ClCompile Include="MapState.cpp" />
     <ClCompile Include="OfflineNetwork.cpp" />
     <ClCompile Include="Packet.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -161,9 +169,18 @@
     <ClInclude Include="ClientNetwork.h" />
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventHandler.h" />
+    <ClInclude Include="FolderPathManager.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameNetwork.h" />
+    <ClInclude Include="GhostMapBlock.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapBlock.h" />
+    <ClInclude Include="MapBlockType.h" />
+    <ClInclude Include="MapEditorEngine.h" />
+    <ClInclude Include="MapState.h" />
+    <ClInclude Include="NextEventHandlerId.h" />
     <ClInclude Include="OfflineNetwork.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="Player.h" />

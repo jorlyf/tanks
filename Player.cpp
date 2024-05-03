@@ -6,6 +6,7 @@
 
 void Player::processMovingInput()
 {
+	if (_tank == nullptr) return;
 	if (_input.w.isHolding)
 	{
 		_tank->moveForward();
@@ -26,6 +27,7 @@ void Player::processMovingInput()
 
 void Player::processFiringInput()
 {
+	if (_tank == nullptr) return;
 	if (_input.lmb.isHolding)
 	{
 		_tank->getCannon()->fire();
@@ -34,6 +36,7 @@ void Player::processFiringInput()
 
 void Player::setCannonTargetRotation()
 {
+	if (_tank == nullptr) return;
 	const sf::Vector2f tankPosition = _tank->getPosition();
 	const sf::Vector2f targetDirection{ _input.worldMousePosition.x - tankPosition.x, _input.worldMousePosition.y - tankPosition.y };
 	const float targetRotation = directionToAngle(targetDirection);
@@ -42,15 +45,13 @@ void Player::setCannonTargetRotation()
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(*_tank);
+	if (_tank != nullptr) target.draw(*_tank);
 }
 
 Player::Player(const GUID& guid, World* world)
 {
 	_guid = guid;
 	_world = world;
-
-	_tank = std::make_unique<Tank>(_world, this);
 }
 
 void Player::update()
@@ -58,7 +59,7 @@ void Player::update()
 	processMovingInput();
 	processFiringInput();
 	setCannonTargetRotation();
-	_tank->update();
+	if (_tank != nullptr) _tank->update();
 }
 
 GUID Player::getGuid() const
@@ -68,7 +69,21 @@ GUID Player::getGuid() const
 
 Tank* Player::getTank()
 {
+	if (_tank == nullptr) return nullptr;
 	return _tank.get();
+}
+
+Tank* Player::spawnTank(const sf::Vector2f& position, const float rotation)
+{
+	_tank = std::make_unique<Tank>(_world, this, position, rotation);
+	return _tank.get();
+}
+
+void Player::destroyTank()
+{
+	if (_tank == nullptr) return;
+	_tank.release();
+	_tank = nullptr;
 }
 
 void Player::setInput(const PlayerInput& playerInput)

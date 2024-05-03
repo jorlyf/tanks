@@ -12,6 +12,10 @@ void Engine::pollEvents()
 	{
 		if (event.type == sf::Event::Closed) _window->close();
 		else if (event.type == sf::Event::Resized) _window->resize({ event.size.width, event.size.height });
+		else if (event.type == sf::Event::KeyPressed) WindowInput::handleKeyboardKeyPressed(event.key.code);
+		else if (event.type == sf::Event::KeyReleased) WindowInput::handleKeyboardKeyReleased(event.key.code);
+		else if (event.type == sf::Event::MouseButtonPressed) WindowInput::handleMouseButtonPressed(event.mouseButton.button);
+		else if (event.type == sf::Event::MouseButtonReleased) WindowInput::handleMouseButtonReleased(event.mouseButton.button);
 		else onEvent(event);
 	}
 }

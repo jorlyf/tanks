@@ -1,0 +1,150 @@
+﻿  Проверка источников на наличие зависимостей модуля…
+  GamePacketTypes.h
+  Компиляция…
+  GamePacketTypes.h
+  Bullet.cpp
+C:\Common\code\Tanks\TextureManager.h(18,2): warning C4091: static : пропускается слева от "TextureManager", когда ни одна переменная не объявлена
+  (компиляция исходного файла "Bullet.cpp")
+  
+C:\Common\code\Tanks\DeltaTime.h(14,2): warning C4091: static : пропускается слева от "DeltaTime", когда ни одна переменная не объявлена
+  (компиляция исходного файла "Bullet.cpp")
+  
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "Bullet.cpp")
+  
+  ClientNetwork.cpp
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "ClientNetwork.cpp")
+  
+  DeltaTime.cpp
+C:\Common\code\Tanks\DeltaTime.h(14,2): warning C4091: static : пропускается слева от "DeltaTime", когда ни одна переменная не объявлена
+  (компиляция исходного файла "DeltaTime.cpp")
+  
+  Engine.cpp
+C:\Common\code\Tanks\DeltaTime.h(14,2): warning C4091: static : пропускается слева от "DeltaTime", когда ни одна переменная не объявлена
+  (компиляция исходного файла "Engine.cpp")
+  
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "Engine.cpp")
+  
+  Event.cpp
+  EventHandler.cpp
+  FolderPathManager.cpp
+C:\Common\code\Tanks\FolderPathManager.h(9,2): warning C4091: static : пропускается слева от "FolderPathManager", когда ни одна переменная не объявлена
+  (компиляция исходного файла "FolderPathManager.cpp")
+  
+  GameEngine.cpp
+C:\Common\code\Tanks\DeltaTime.h(14,2): warning C4091: static : пропускается слева от "DeltaTime", когда ни одна переменная не объявлена
+  (компиляция исходного файла "GameEngine.cpp")
+  
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "GameEngine.cpp")
+  
+  GameNetwork.cpp
+  GhostMapBlock.cpp
+  main.cpp
+C:\Common\code\Tanks\DeltaTime.h(14,2): warning C4091: static : пропускается слева от "DeltaTime", когда ни одна переменная не объявлена
+  (компиляция исходного файла "main.cpp")
+  
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "main.cpp")
+  
+C:\Common\code\Tanks\TextureManager.h(18,2): warning C4091: static : пропускается слева от "TextureManager", когда ни одна переменная не объявлена
+  (компиляция исходного файла "main.cpp")
+  
+  Map.cpp
+C:\Common\code\Tanks\FolderPathManager.h(9,2): warning C4091: static : пропускается слева от "FolderPathManager", когда ни одна переменная не объявлена
+  (компиляция исходного файла "Map.cpp")
+  
+  MapBlock.cpp
+C:\Common\code\Tanks\TextureManager.h(18,2): warning C4091: static : пропускается слева от "TextureManager", когда ни одна переменная не объявлена
+  (компиляция исходного файла "MapBlock.cpp")
+  
+C:\Common\code\Tanks\MapBlock.cpp(78,29): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+C:\Common\code\Tanks\MapBlock.cpp(78,16): warning C4244: инициализация: преобразование "int" в "const float", возможна потеря данных
+C:\Common\code\Tanks\MapBlock.cpp(79,29): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+C:\Common\code\Tanks\MapBlock.cpp(79,16): warning C4244: инициализация: преобразование "int" в "const float", возможна потеря данных
+  MapEditorEngine.cpp
+C:\Common\code\Tanks\DeltaTime.h(14,2): warning C4091: static : пропускается слева от "DeltaTime", когда ни одна переменная не объявлена
+  (компиляция исходного файла "MapEditorEngine.cpp")
+  
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "MapEditorEngine.cpp")
+  
+C:\Common\code\Tanks\MapEditorEngine.cpp(21,53): warning C4244: =: преобразование "T" в "T", возможна потеря данных
+C:\Common\code\Tanks\MapEditorEngine.cpp(21,53): warning C4244:         with
+C:\Common\code\Tanks\MapEditorEngine.cpp(21,53): warning C4244:         [
+C:\Common\code\Tanks\MapEditorEngine.cpp(21,53): warning C4244:             T=float
+C:\Common\code\Tanks\MapEditorEngine.cpp(21,53): warning C4244:         ]
+C:\Common\code\Tanks\MapEditorEngine.cpp(21,53): warning C4244:         and
+C:\Common\code\Tanks\MapEditorEngine.cpp(21,53): warning C4244:         [
+C:\Common\code\Tanks\MapEditorEngine.cpp(21,53): warning C4244:             T=int
+C:\Common\code\Tanks\MapEditorEngine.cpp(21,53): warning C4244:         ]
+C:\Common\code\Tanks\MapEditorEngine.cpp(22,53): warning C4244: =: преобразование "T" в "T", возможна потеря данных
+C:\Common\code\Tanks\MapEditorEngine.cpp(22,53): warning C4244:         with
+C:\Common\code\Tanks\MapEditorEngine.cpp(22,53): warning C4244:         [
+C:\Common\code\Tanks\MapEditorEngine.cpp(22,53): warning C4244:             T=float
+C:\Common\code\Tanks\MapEditorEngine.cpp(22,53): warning C4244:         ]
+C:\Common\code\Tanks\MapEditorEngine.cpp(22,53): warning C4244:         and
+C:\Common\code\Tanks\MapEditorEngine.cpp(22,53): warning C4244:         [
+C:\Common\code\Tanks\MapEditorEngine.cpp(22,53): warning C4244:             T=int
+C:\Common\code\Tanks\MapEditorEngine.cpp(22,53): warning C4244:         ]
+  MapState.cpp
+C:\Common\code\Tanks\MapState.cpp(23,17): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  OfflineNetwork.cpp
+C:\Common\code\Tanks\OfflineNetwork.cpp(2,1): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "OfflineNetwork.cpp")
+  
+  Packet.cpp
+  Player.cpp
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "Player.cpp")
+  
+  RectCollider.cpp
+  utils.cpp
+  Создание кода...
+  Компиляция...
+  ServerNetwork.cpp
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "ServerNetwork.cpp")
+  
+  ServerPacketIn.cpp
+  ServerPacketOut.cpp
+  Tank.cpp
+C:\Common\code\Tanks\DeltaTime.h(14,2): warning C4091: static : пропускается слева от "DeltaTime", когда ни одна переменная не объявлена
+  (компиляция исходного файла "Tank.cpp")
+  
+C:\Common\code\Tanks\TextureManager.h(18,2): warning C4091: static : пропускается слева от "TextureManager", когда ни одна переменная не объявлена
+  (компиляция исходного файла "Tank.cpp")
+  
+  TankCannon.cpp
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "TankCannon.cpp")
+  
+C:\Common\code\Tanks\DeltaTime.h(14,2): warning C4091: static : пропускается слева от "DeltaTime", когда ни одна переменная не объявлена
+  (компиляция исходного файла "TankCannon.cpp")
+  
+C:\Common\code\Tanks\TextureManager.h(18,2): warning C4091: static : пропускается слева от "TextureManager", когда ни одна переменная не объявлена
+  (компиляция исходного файла "TankCannon.cpp")
+  
+  TcpClient.cpp
+  TcpListener.cpp
+  TextureManager.cpp
+C:\Common\code\Tanks\TextureManager.h(18,2): warning C4091: static : пропускается слева от "TextureManager", когда ни одна переменная не объявлена
+  (компиляция исходного файла "TextureManager.cpp")
+  
+C:\Common\code\Tanks\FolderPathManager.h(9,2): warning C4091: static : пропускается слева от "FolderPathManager", когда ни одна переменная не объявлена
+  (компиляция исходного файла "TextureManager.cpp")
+  
+  Window.cpp
+  WindowInput.cpp
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "WindowInput.cpp")
+  
+  World.cpp
+C:\Common\code\Tanks\WindowInput.h(31,2): warning C4091: static : пропускается слева от "WindowInput", когда ни одна переменная не объявлена
+  (компиляция исходного файла "World.cpp")
+  
+  Создание кода...
+  Tanks.vcxproj -> C:\Common\code\Tanks\x64\Debug\Tanks.exe

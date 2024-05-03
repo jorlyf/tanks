@@ -8,7 +8,6 @@
 
 class Engine
 {
-private:
 	void start();
 	void pollEvents();
 

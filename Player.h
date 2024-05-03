@@ -33,5 +33,7 @@ public:
 	void update();
 	GUID getGuid() const;
 	Tank* getTank();
+	Tank* spawnTank(const sf::Vector2f& position, const float rotation);
+	void destroyTank();
 	void setInput(const PlayerInput& playerInput);
 };

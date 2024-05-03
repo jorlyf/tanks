@@ -30,6 +30,7 @@ struct PlayerState
 	GUID guid;
 	sf::Vector2f cursorPosition;
 	TankState tank;
+	bool isTankAlive;
 };
 
 struct WorldState

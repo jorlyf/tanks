@@ -4,6 +4,7 @@
 void RectCollider::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(_vertices, 5, sf::PrimitiveType::LinesStrip, states);
+	target.draw(_vertices, 2, sf::PrimitiveType::LinesStrip, states);
 }
 
 RectCollider::RectCollider()
@@ -26,6 +27,7 @@ void RectCollider::calculateVertices()
 	const sf::Vector2f scale = _sprite->getScale();
 	const sf::Vector2f origin = sf::Vector2f{ _sprite->getOrigin().x * scale.x, _sprite->getOrigin().y * scale.y };
 	const sf::FloatRect localBounds = _sprite->getLocalBounds();
+
 	const float width = localBounds.width * scale.x;
 	const float height = localBounds.height * scale.y;
 
@@ -55,12 +57,6 @@ bool RectCollider::intersects(RectCollider& other)
 {
 	calculateVertices();
 	other.calculateVertices();
-	return false;
-}
 
-//bool RectCollider::intersects(CircleCollider& other)
-//{
-//	calculateVertices();
-//	other.calculateVertices();
-//	return false;
-//}
+	return isPolygonsIntersecting(_vertices, 5, other._vertices, 5);
+}

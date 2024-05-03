@@ -5,14 +5,11 @@
 #include "ServerNetwork.h"
 #include "ClientNetwork.h"
 #include "OfflineNetwork.h"
-#include "TextureManager.h"
 
 GameEngine::GameEngine(const bool isServer, bool isOnline, const sf::Vector2u& size, const std::string& windowTitle) : Engine(size, windowTitle)
 {
 	_isServer = isServer;
 	_isOnline = isOnline;
-
-	TextureManager::load();
 }
 
 GameEngine::~GameEngine() { }
@@ -54,8 +51,5 @@ void GameEngine::onRender(std::function<void(sf::Drawable& drawable)> render)
 
 void GameEngine::onEvent(sf::Event& event)
 {
-	if (event.type == sf::Event::KeyPressed) WindowInput::handleKeyboardKeyPressed(event.key.code);
-	else if (event.type == sf::Event::KeyReleased) WindowInput::handleKeyboardKeyReleased(event.key.code);
-	else if (event.type == sf::Event::MouseButtonPressed) WindowInput::handleMouseButtonPressed(event.mouseButton.button);
-	else if (event.type == sf::Event::MouseButtonReleased) WindowInput::handleMouseButtonReleased(event.mouseButton.button);
+	
 }

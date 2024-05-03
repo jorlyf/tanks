@@ -41,6 +41,7 @@ void OfflineNetwork::update()
 void OfflineNetwork::run()
 {
 	_world->addPlayer(_localPlayerGuid);
+	_world->spawnTank(_localPlayerGuid, { 100.f, 0.f }, 0.f);
 }
 
 void OfflineNetwork::stop()

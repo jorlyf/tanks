@@ -29,6 +29,8 @@ void TcpClient::sending()
 		if (_packetsOut.empty())
 		{
 			_packetsOutMutex.unlock();
+			std::chrono::milliseconds t(10);
+			std::this_thread::sleep_for(t);
 			continue;
 		}
 		Packet packet = _packetsOut.front();

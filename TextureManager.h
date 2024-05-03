@@ -5,13 +5,14 @@
 
 static class TextureManager
 {
-private:
-	static std::string _texturesFolderPath;
+	static std::string _textureFolderPath;
 
 public:
 	static sf::Texture tank;
 	static sf::Texture tankCannon;
 	static sf::Texture bullet;
+
+	static sf::Texture metalBlock;
 
 	static void load();
 };

@@ -1,10 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <list>
+#include <functional>
 #include "RectCollider.h"
 
 class World;
 class Player;
 class TankCannon;
+class MapBlock;
 
 class Tank : public sf::Drawable
 {
@@ -25,13 +28,16 @@ class Tank : public sf::Drawable
 
 	RectCollider _collider;
 
+	std::list<std::function<void(Tank* tank)>> _onTankDestroy;
+
 	void initSprite();
+	bool isCollideMap(const sf::Vector2f& position, const float rotation);
 
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
-	Tank(World* world, Player* player);
+	Tank(World* world, Player* player, const sf::Vector2f position, const float rotation);
 	void update();
 	void moveForward();
 	void moveBackward();
@@ -43,6 +49,8 @@ public:
 	void setPosition(const sf::Vector2f& position);
 	float getHp() const;
 	void setHp(const float hp);
+	float damage(const float damage);
 	Player* getPlayer() const;
 	TankCannon* getCannon() const;
+	RectCollider getCollider() const;
 };
