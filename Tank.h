@@ -3,6 +3,8 @@
 #include <list>
 #include <functional>
 #include "RectCollider.h"
+#include "Event.h"
+#include "EventHandler.h"
 
 class World;
 class Player;
@@ -28,7 +30,7 @@ class Tank : public sf::Drawable
 
 	RectCollider _collider;
 
-	std::list<std::function<void(Tank* tank)>> _onTankDestroy;
+	Event<> _onTankDestroy;
 
 	void initSprite();
 	bool isCollideMap(const sf::Vector2f& position, const float rotation);
@@ -53,4 +55,5 @@ public:
 	Player* getPlayer() const;
 	TankCannon* getCannon() const;
 	RectCollider getCollider() const;
+	void addOnTankDestroyListener(const EventHandler<>& listener);
 };

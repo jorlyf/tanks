@@ -21,7 +21,6 @@ class MapBlock : public sf::Drawable
 	void notifyMapBlockDestroyListeners();
 
 	void initSprite();
-	sf::Vector2f getWorldPosition() const;
 	bool isUnbreakable() const;
 
 protected:
@@ -32,6 +31,7 @@ public:
 	void update();
 	MapBlockType getType() const;
 	sf::Vector2i getPosition() const;
+	sf::Vector2f getWorldPosition() const;
 	float getHealth() const;
 	RectCollider getCollider() const;
 	void damage(const float damage);

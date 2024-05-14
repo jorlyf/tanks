@@ -1,8 +1,11 @@
+#include <iostream>
 #include "Player.h"
 #include "Tank.h"
 #include "TankCannon.h"
 #include "utils.h"
-#include <iostream>
+#include <combaseapi.h>
+#include "GUIDUtils.h"
+#include "FontManager.h"
 
 void Player::processMovingInput()
 {
@@ -46,11 +49,22 @@ void Player::setCannonTargetRotation()
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	if (_tank != nullptr) target.draw(*_tank);
+	if (_tank != nullptr)
+	{
+		const std::string guidString = GUIDUtils::guidToString(_guid);
+		const sf::Font& font = FontManager::regular;
+		sf::Text guidText(sf::String(guidString), font, 9);
+		const sf::Color color = _team == Team::red ? sf::Color::Red : sf::Color::Blue;
+		guidText.setFillColor(color);
+		guidText.setPosition(_tank->getPosition());
+		target.draw(guidText);
+	}
 }
 
-Player::Player(const GUID& guid, World* world)
+Player::Player(const GUID& guid, const Team team, World* world)
 {
 	_guid = guid;
+	_team = team;
 	_world = world;
 }
 
@@ -65,6 +79,11 @@ void Player::update()
 GUID Player::getGuid() const
 {
 	return _guid;
+}
+
+Team Player::getTeam() const
+{
+	return _team;
 }
 
 Tank* Player::getTank()

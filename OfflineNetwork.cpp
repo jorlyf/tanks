@@ -1,6 +1,7 @@
 #include "OfflineNetwork.h"
 #include "World.h";
 #include "Player.h"
+#include "Tank.h"
 #include "WindowInput.h"
 
 void OfflineNetwork::processPlayerInput()
@@ -18,9 +19,11 @@ void OfflineNetwork::processPlayerInput()
 	localPlayer->setInput(playerInput);
 }
 
-OfflineNetwork::OfflineNetwork(World* world)
+OfflineNetwork::OfflineNetwork(World* world, Window* window)
 {
 	_world = world;
+	_window = window;
+	_camera.setWindow(window);
 }
 
 OfflineNetwork::~OfflineNetwork()
@@ -36,12 +39,19 @@ void OfflineNetwork::init(const std::string& ip, const unsigned int port)
 void OfflineNetwork::update()
 {
 	processPlayerInput();
+
+	Player* player = _world->getPlayer(_localPlayerGuid);
+	if (player == nullptr) return;
+	Tank* tank = player->getTank();
+	if (tank == nullptr) return;
+	_camera.setTargetPosition(tank->getPosition());
+	_camera.update();
 }
 
 void OfflineNetwork::run()
 {
-	_world->addPlayer(_localPlayerGuid);
-	_world->spawnTank(_localPlayerGuid, { 100.f, 0.f }, 0.f);
+	_world->addPlayer(_localPlayerGuid, Team::red);
+	_world->spawnTank(_localPlayerGuid);
 }
 
 void OfflineNetwork::stop()

@@ -3,6 +3,11 @@
 
 void GhostMapBlock::initSprite()
 {
+	if (_texture == nullptr)
+	{
+		_sprite = sf::Sprite();
+		return;
+	}
 	_sprite.setTexture(*_texture);
 	sf::FloatRect baseRect = _sprite.getLocalBounds();
 	_sprite.setOrigin(baseRect.width / 2, baseRect.height / 2);

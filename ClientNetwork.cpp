@@ -1,5 +1,7 @@
 #include "ClientNetwork.h"
 #include "World.h"
+#include "Window.h"
+#include "Tank.h"
 
 void ClientNetwork::processPacket(const Packet& packet)
 {
@@ -33,9 +35,11 @@ void ClientNetwork::sendPlayerInput()
 	_socket->sendPacket(packet);
 }
 
-ClientNetwork::ClientNetwork(World* world)
+ClientNetwork::ClientNetwork(World* world, Window* window)
 {
 	_world = world;
+	_window = window;
+	_camera.setWindow(window);
 }
 
 ClientNetwork::~ClientNetwork()
@@ -59,6 +63,13 @@ void ClientNetwork::update()
 		processPacket(packet);
 	}
 	sendPlayerInput();
+
+	Player* player = _world->getPlayer(_socket->getGuid());
+	if (player == nullptr) return;
+	Tank* tank = player->getTank();
+	if (tank == nullptr) return;
+	_camera.setTargetPosition(tank->getPosition());
+	_camera.update();
 }
 
 void ClientNetwork::run()

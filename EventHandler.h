@@ -1,18 +1,18 @@
 #pragma once
 #include <functional>
 
-template<typename T>
+template<typename ...args>
 class EventHandler
 {
 	size_t _id;
-	std::function<void(T)> _action;
+	std::function<void(args ...)> _action;
 
 public:
-	EventHandler(const std::function<void(T)>& action);
+	EventHandler(const std::function<void(args ...)>& action);
 	EventHandler(const EventHandler& copy);
 
-	void operator()(T) const;
-	bool operator==(const EventHandler<T>& other) const;
+	void operator()(const args& ... parameters) const;
+	bool operator==(const EventHandler<args ...>& other) const;
 };
 
 #include "EventHandler.cpp"

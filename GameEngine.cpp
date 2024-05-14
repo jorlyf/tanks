@@ -26,12 +26,12 @@ void GameEngine::onStart()
 		}
 		else
 		{
-			_network = std::make_unique<ClientNetwork>(_world.get());
+			_network = std::make_unique<ClientNetwork>(_world.get(), _window.get());
 		}
 	}
 	else
 	{
-		_network = std::make_unique<OfflineNetwork>(_world.get());
+		_network = std::make_unique<OfflineNetwork>(_world.get(), _window.get());
 	}
 
 	_network->init();

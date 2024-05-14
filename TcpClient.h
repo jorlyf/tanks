@@ -43,6 +43,7 @@ public:
 	~TcpClient();
 	void run();
 	void stop();
+	GUID getGuid() const;
 	bool getPacket(Packet* packet);
 	void sendPacket(const Packet& packet);
 	void setSocketOpenHandler(std::function<void()> socketOpenHandler);

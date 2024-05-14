@@ -13,6 +13,8 @@ public:
 	static sf::Texture bullet;
 
 	static sf::Texture metalBlock;
+	static sf::Texture redBaseBlock;
+	static sf::Texture blueBaseBlock;
 
 	static void load();
 };

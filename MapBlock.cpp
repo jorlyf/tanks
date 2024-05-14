@@ -13,6 +13,11 @@ void MapBlock::notifyMapBlockDestroyListeners()
 
 void MapBlock::initSprite()
 {
+	if (_texture == nullptr)
+	{
+		_sprite = sf::Sprite();
+		return;
+	}
 	_sprite.setTexture(*_texture);
 	sf::FloatRect baseRect = _sprite.getLocalBounds();
 	_sprite.setOrigin(baseRect.width / 2, baseRect.height / 2);
@@ -29,7 +34,15 @@ sf::Vector2f MapBlock::getWorldPosition() const
 
 bool MapBlock::isUnbreakable() const
 {
-	return _type == MapBlockType::metal;
+	switch (_type)
+	{
+	case MapBlockType::metal:
+	case MapBlockType::redSpawner:
+	case MapBlockType::blueSpawner:
+		return true;
+
+	default: return false;
+	}
 }
 
 void MapBlock::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -97,6 +110,14 @@ sf::Texture* MapBlock::getTexture(const MapBlockType type)
 	{
 	case MapBlockType::metal:
 		return &TextureManager::metalBlock;
+	case MapBlockType::redBase:
+		return  &TextureManager::redBaseBlock;
+	case MapBlockType::blueBase:
+		return  &TextureManager::blueBaseBlock;
+	case MapBlockType::redSpawner:
+		return nullptr;
+	case MapBlockType::blueSpawner:
+		return nullptr;
 	default:
 		return nullptr;
 	}

@@ -2,39 +2,39 @@
 #include "Event.h"
 #include "utils.h"
 
-template<typename T>
-void Event<T>::invoke(T parameter)
+template<typename ...args>
+void Event<args ...>::invoke(const args& ... parameters)
 {
-	for (const EventHandler<T>& handler : _handlers)
+	for (const EventHandler<args ...>& handler : _handlers)
 	{
-		handler(parameter);
+		handler(parameters...);
 	}
 }
 
-template<typename T>
-void Event<T>::addListener(const EventHandler<T>& handler)
+template<typename ...args>
+void Event<args ...>::addListener(const EventHandler<args ...>& handler)
 {
 	_handlers.push_back(handler);
 }
 
-template<typename T>
-void Event<T>::removeListener(const EventHandler<T>& handler)
+template<typename ...args>
+void Event<args ...>::removeListener(const EventHandler<args ...>& handler)
 {
-	typename std::list<EventHandler<T>>::const_iterator it = std::find(_handlers.cbegin(), _handlers.cend(), handler);
+	typename std::list<EventHandler<args ...>>::const_iterator it = std::find(_handlers.cbegin(), _handlers.cend(), handler);
 	if (it != _handlers.cend())
 	{
 		_handlers.erase(it);
 	}
 }
 
-template<typename T>
-void Event<T>::operator+=(const EventHandler<T>& handler)
+template<typename ...args>
+void Event<args ...>::operator+=(const EventHandler<args ...>& handler)
 {
 	addListener(handler);
 }
 
-template<typename T>
-void Event<T>::operator-=(const EventHandler<T>& handler)
+template<typename ...args>
+void Event<args ...>::operator-=(const EventHandler<args ...>& handler)
 {
 	removeListener(handler);
 }

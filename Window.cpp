@@ -55,3 +55,8 @@ sf::Vector2f Window::getWorldMousePosition() const
 	sf::Vector2f worldPosition = _window->mapPixelToCoords(relativePosition);
 	return worldPosition;
 }
+
+void Window::setView(const sf::View& view)
+{
+	_window->setView(view);
+}

@@ -29,7 +29,7 @@ void TankCannon::draw(sf::RenderTarget& target, sf::RenderStates states) const
 void TankCannon::initSprite()
 {
 	_sprite.setTexture(TextureManager::tankCannon);
-	_sprite.setScale({ 0.1f, 0.1f });
+	_sprite.setScale({ 0.05f, 0.05f });
 	sf::FloatRect baseRect = _sprite.getLocalBounds();
 	_sprite.setOrigin(baseRect.width / 2, baseRect.height / 2);
 	_sprite.setRotation(_rotation + 90.f);

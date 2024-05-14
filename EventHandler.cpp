@@ -2,28 +2,28 @@
 #include "EventHandler.h"
 #include "NextEventHandlerId.h"
 
-template<typename T>
-EventHandler<T>::EventHandler(const std::function<void(T)>& action)
+template<typename ...args>
+EventHandler<args ...>::EventHandler(const std::function<void(args ...)>& action)
 {
 	_id = nextEventHandlerId++;
 	_action = action;
 }
 
-template<typename T>
-EventHandler<T>::EventHandler(const EventHandler<T>& copy)
+template<typename ...args>
+EventHandler<args ...>::EventHandler(const EventHandler<args ...>& copy)
 {
 	_id = copy._id;
 	_action = copy._action;
 }
 
-template<typename T>
-void EventHandler<T>::operator()(T parameter) const
+template<typename ...args>
+void EventHandler<args ...>::operator()(const args &... parameters) const
 {
-	_action(parameter);
+	_action(parameters...);
 }
 
-template<typename T>
-bool EventHandler<T>::operator==(const EventHandler<T>& other) const
+template<typename ...args>
+bool EventHandler<args ...>::operator==(const EventHandler<args ...>& other) const
 {
 	return _id == other._id;
 }

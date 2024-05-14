@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Tank.h"
 #include "TankCannon.h"
 #include "utils.h"
@@ -9,7 +10,7 @@
 void Tank::initSprite()
 {
 	_sprite.setTexture(TextureManager::tank);
-	_sprite.setScale({ 0.1f, 0.1f });
+	_sprite.setScale({ 0.05f, 0.05f });
 	sf::FloatRect baseRect = _sprite.getLocalBounds();
 	_sprite.setOrigin(baseRect.width / 2, baseRect.height / 2);
 	_sprite.setRotation(_rotation + 90.f);
@@ -137,6 +138,7 @@ float Tank::getHp() const
 void Tank::setHp(const float hp)
 {
 	_hp = hp;
+	if (_hp <= 0) _onTankDestroy.invoke();
 }
 
 Player* Tank::getPlayer() const
@@ -158,4 +160,9 @@ float Tank::damage(const float damage)
 RectCollider Tank::getCollider() const
 {
 	return _collider;
+}
+
+void Tank::addOnTankDestroyListener(const EventHandler<>& listener)
+{
+	_onTankDestroy += listener;
 }

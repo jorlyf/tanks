@@ -20,6 +20,7 @@ void World::updateWorldState()
 		TankCannonState& tankCannonState = tankState.cannon;
 
 		playerState.guid = player->getGuid();
+		playerState.team = player->getTeam();
 		playerState.cursorPosition = WindowInput::getWorldMousePosition();
 
 		Tank* tank = player->getTank();
@@ -59,8 +60,26 @@ World::World(Window* window)
 	setMapName("default");
 }
 
+void World::updateSpawnerBlocks()
+{
+	auto& blocks = *_map->getBlocks();
+	for (auto& it : blocks)
+	{
+		auto block = it.second.get();
+		if (block == nullptr) continue;
+		if (block->getType() == MapBlockType::redSpawner) _redSpawnerBlock = block;
+		else if (block->getType() == MapBlockType::blueSpawner) _blueSpawnerBlock = block;
+	}
+}
+
 void World::update()
 {
+	for (auto& respawnCallback : _respawnCallbacks)
+	{
+		respawnCallback.update();
+	}
+	_respawnCallbacks.remove_if([](const TimeoutCallback& timeoutCallback) { return timeoutCallback.isInvoked(); });
+
 	for (auto& player : _players)
 	{
 		player->update();
@@ -73,6 +92,21 @@ void World::update()
 		if (bullet->getSpeed() < 100.f)
 		{
 			_bulletIdsToDelete.push_back(bullet->getId());
+		}
+	}
+
+	for (auto& player : _players)
+	{
+		Tank* tank = player->getTank();
+		if (tank == nullptr) continue;
+		if (tank->getHp() <= 0)
+		{
+			player->destroyTank();
+			Player* playerPtr = player.get();
+			_respawnCallbacks.push_back(TimeoutCallback([=]() {
+				if (playerPtr == nullptr) return;
+				spawnTank(playerPtr->getGuid());
+				}, 5000));
 		}
 	}
 
@@ -115,7 +149,7 @@ void World::synchronizeWorldState(const WorldState& worldState)
 		TankState& tankState = playerState.tank;
 		TankCannonState& tankCannonState = tankState.cannon;
 
-		_players.push_back(std::make_unique<Player>(playerState.guid, this));
+		_players.push_back(std::make_unique<Player>(playerState.guid, playerState.team, this));
 
 		Player* player = getPlayer(playerState.guid);
 		if (!playerState.isTankAlive) continue;
@@ -157,9 +191,9 @@ std::list<std::unique_ptr<Player>>* World::getPlayers()
 	return &_players;
 }
 
-void World::addPlayer(const GUID& guid)
+void World::addPlayer(const GUID& guid, const Team team)
 {
-	_players.push_back(std::make_unique<Player>(guid, this));
+	_players.push_back(std::make_unique<Player>(guid, team, this));
 }
 
 void World::removePlayer(const GUID& guid)
@@ -172,7 +206,8 @@ void World::spawnTank(const GUID& guid)
 {
 	Player* player = getPlayer(guid);
 	if (player == nullptr) return;
-	const sf::Vector2f position{};
+	MapBlock* spawnerBlock = player->getTeam() == Team::red ? _redSpawnerBlock : _blueSpawnerBlock;
+	const sf::Vector2f position = spawnerBlock->getWorldPosition();
 	const float rotation = 0.f;
 	spawnTank(player, position, rotation);
 }
@@ -188,6 +223,10 @@ void World::spawnTank(Player* player, const sf::Vector2f& position, const float 
 {
 	Tank* tank = player->spawnTank(position, rotation);
 	tank->getCannon()->addOnFireListener([this](const GUID& playerGuid, const sf::Vector2f& position, const sf::Vector2f& direction) { spawnBullet(playerGuid, position, direction); });
+
+	tank->addOnTankDestroyListener(EventHandler<>([=]() {
+
+		}));
 }
 
 Bullet* World::getBullet(const unsigned int id) const
@@ -211,7 +250,10 @@ void World::spawnBullet(const GUID& playerGuid, const sf::Vector2f& position, co
 	Bullet* bullet = getBullet(_nextBulletId);
 
 	EventHandler<Tank*> onTankHit([this, bullet](Tank* tank) {
-		if (tank->getPlayer()->getGuid() == bullet->getPlayerGuid()) return;
+		const Player* hittedPlayer = tank->getPlayer();
+		const Player* attackedPlayer = getPlayer(bullet->getPlayerGuid());
+		if (hittedPlayer->getGuid() == bullet->getPlayerGuid()) return;
+		if (hittedPlayer->getTeam() == attackedPlayer->getTeam()) return;
 		const float damage = bullet->getDamage();
 		tank->damage(damage);
 		_bulletIdsToDelete.push_back(bullet->getId());
@@ -237,4 +279,5 @@ void World::setMapName(const std::string& mapName)
 	if (_map != nullptr) _map.release();
 	_map = std::make_unique<Map>(mapName);
 	_map->load();
+	updateSpawnerBlocks();
 }

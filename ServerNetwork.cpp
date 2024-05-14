@@ -32,8 +32,9 @@ void ServerNetwork::processOpenedClosedSockets()
 	for (GUID playerGuid : _openedSockets)
 	{
 		_clients.push_back(std::make_unique<ServerClient>(playerGuid));
-		std::cout << "Player connected." << std::endl;
-		_world->addPlayer(playerGuid);
+		const Team team = getLowestPlayerTeam(*_world->getPlayers());
+		std::cout << "Player connected. Team = " << (team == Team::red ? "Red" : "Blue") << "." << std::endl;
+		_world->addPlayer(playerGuid, team);
 		_world->spawnTank(playerGuid);
 	}
 	_openedSockets.clear();

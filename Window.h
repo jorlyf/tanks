@@ -18,4 +18,5 @@ public:
 	bool pollEvent(sf::Event& event);
 	sf::Vector2i getRelativeMousePosition() const;
 	sf::Vector2f getWorldMousePosition() const;
+	void setView(const sf::View& view);
 };

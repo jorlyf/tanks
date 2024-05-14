@@ -19,6 +19,7 @@ class Bullet : public sf::Drawable
 	sf::Vector2f _position;
 	sf::Vector2f _direction;
 	float _speed;
+	float _damage = 80.f;
 
 	sf::Sprite _sprite;
 

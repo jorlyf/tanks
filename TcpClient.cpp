@@ -135,6 +135,11 @@ void TcpClient::stop()
 	WSACleanup();
 }
 
+GUID TcpClient::getGuid() const
+{
+	return _guid;
+}
+
 bool TcpClient::getPacket(Packet* packet)
 {
 	_packetsInMutex.lock();

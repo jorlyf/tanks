@@ -1,14 +1,17 @@
 C:\Common\code\Tanks\Bullet.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\Bullet.obj
+C:\Common\code\Tanks\Camera.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\Camera.obj
 C:\Common\code\Tanks\ClientNetwork.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\ClientNetwork.obj
 C:\Common\code\Tanks\DeltaTime.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\DeltaTime.obj
 C:\Common\code\Tanks\Engine.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\Engine.obj
 C:\Common\code\Tanks\Event.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\Event.obj
 C:\Common\code\Tanks\EventHandler.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\EventHandler.obj
 C:\Common\code\Tanks\FolderPathManager.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\FolderPathManager.obj
+C:\Common\code\Tanks\FontManager.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\FontManager.obj
 C:\Common\code\Tanks\GameEngine.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\GameEngine.obj
 C:\Common\code\Tanks\GameNetwork.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\GameNetwork.obj
 C:\Common\code\Tanks\GamePacketTypes.h;C:\Common\code\Tanks\Tanks\x64\Debug\GamePacketTypes.h.obj
 C:\Common\code\Tanks\GhostMapBlock.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\GhostMapBlock.obj
+C:\Common\code\Tanks\GUIDUtils.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\GUIDUtils.obj
 C:\Common\code\Tanks\main.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\main.obj
 C:\Common\code\Tanks\Map.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\Map.obj
 C:\Common\code\Tanks\MapBlock.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\MapBlock.obj
@@ -18,6 +21,8 @@ C:\Common\code\Tanks\OfflineNetwork.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\Off
 C:\Common\code\Tanks\Packet.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\Packet.obj
 C:\Common\code\Tanks\Player.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\Player.obj
 C:\Common\code\Tanks\RectCollider.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\RectCollider.obj
+C:\Common\code\Tanks\Team.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\Team.obj
+C:\Common\code\Tanks\TimeoutCallback.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\TimeoutCallback.obj
 C:\Common\code\Tanks\utils.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\utils.obj
 C:\Common\code\Tanks\ServerNetwork.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\ServerNetwork.obj
 C:\Common\code\Tanks\ServerPacketIn.cpp;C:\Common\code\Tanks\Tanks\x64\Debug\ServerPacketIn.obj

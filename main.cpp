@@ -5,11 +5,12 @@
 #include "GameEngine.h"
 #include "MapEditorEngine.h"
 #include "TextureManager.h"
+#include "FontManager.h"
 
 int main(int argc, char* args[])
 {
 	bool isServer = true;
-	bool isOnline = false;
+	bool isOnline = true;
 	bool isMapEditor = false;
 	if (argc > 1)
 	{
@@ -20,6 +21,7 @@ int main(int argc, char* args[])
 	}
 
 	TextureManager::load();
+	FontManager::load();
 
 	if (isMapEditor)
 	{
@@ -30,7 +32,7 @@ int main(int argc, char* args[])
 	{
 		const std::string windowTitle = isOnline ? (isServer ? "server" : "client") : "offline";
 
-		GameEngine game{ isServer, isOnline, {1200, 800} ,windowTitle };
+		GameEngine game{ isServer, isOnline, {1200, 800}, windowTitle };
 		game.run();
 	}
 

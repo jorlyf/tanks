@@ -166,7 +166,7 @@ float Bullet::getSpeed() const
 
 float Bullet::getDamage() const
 {
-	return 100.f;
+	return _damage;
 }
 
 void Bullet::addOnMapBlockHitListener(const EventHandler<MapBlock*>& handler)
@@ -176,5 +176,5 @@ void Bullet::addOnMapBlockHitListener(const EventHandler<MapBlock*>& handler)
 
 void Bullet::addOnTankHitListener(const EventHandler<Tank*>& handler)
 {
-	_onTankHit -= handler;
+	_onTankHit += handler;
 }

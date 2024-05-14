@@ -7,6 +7,8 @@
 #include "Window.h"
 #include "WorldState.h"
 #include "Map.h"
+#include "Team.h"
+#include "TimeoutCallback.h"
 
 class Bullet;
 class Player;
@@ -18,7 +20,11 @@ class World
 	std::list<std::unique_ptr<Player>> _players;
 	std::list<std::unique_ptr<Bullet>> _bullets;
 	WorldState _worldState;
-	
+
+	std::list<TimeoutCallback> _respawnCallbacks;
+	MapBlock* _redSpawnerBlock = nullptr;
+	MapBlock* _blueSpawnerBlock = nullptr;
+
 	std::unique_ptr<Map> _map = nullptr;
 
 	unsigned int _nextBulletId = 0;
@@ -26,6 +32,7 @@ class World
 	std::list<unsigned int> _bulletIdsToDelete;
 
 	void updateWorldState();
+	void updateSpawnerBlocks();
 
 public:
 	World(Window* window);
@@ -36,7 +43,7 @@ public:
 	WorldState getWorldState() const;
 	Player* getPlayer(const GUID& guid) const;
 	std::list<std::unique_ptr<Player>>* getPlayers();
-	void addPlayer(const GUID& guid);
+	void addPlayer(const GUID& guid, const Team team);
 	void removePlayer(const GUID& guid);
 	void spawnTank(const GUID& guid);
 	void spawnTank(const GUID& guid, const sf::Vector2f& position, const float rotation);

@@ -1,6 +1,7 @@
 #pragma once
 #include <guiddef.h>
 #include <SFML/System/Vector2.hpp>
+#include "Team.h"
 
 struct BulletState
 {
@@ -28,6 +29,7 @@ struct TankState
 struct PlayerState
 {
 	GUID guid;
+	Team team;
 	sf::Vector2f cursorPosition;
 	TankState tank;
 	bool isTankAlive;

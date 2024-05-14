@@ -3,4 +3,8 @@
 enum MapBlockType
 {
 	metal,
+	redBase,
+	blueBase,
+	redSpawner,
+	blueSpawner,
 };

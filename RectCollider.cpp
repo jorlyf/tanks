@@ -24,6 +24,7 @@ RectCollider::RectCollider(sf::Sprite* sprite)
 
 void RectCollider::calculateVertices()
 {
+	if (_sprite == nullptr) return;
 	const sf::Vector2f scale = _sprite->getScale();
 	const sf::Vector2f origin = sf::Vector2f{ _sprite->getOrigin().x * scale.x, _sprite->getOrigin().y * scale.y };
 	const sf::FloatRect localBounds = _sprite->getLocalBounds();

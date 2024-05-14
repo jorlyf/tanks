@@ -132,16 +132,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClientNetwork.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="FolderPathManager.cpp" />
+    <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameNetwork.cpp" />
     <ClCompile Include="GamePacketTypes.h" />
     <ClCompile Include="GhostMapBlock.cpp" />
+    <ClCompile Include="GUIDUtils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapBlock.cpp" />
@@ -151,6 +154,8 @@
     <ClCompile Include="Packet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RectCollider.cpp" />
+    <ClCompile Include="Team.cpp" />
+    <ClCompile Include="TimeoutCallback.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="ServerNetwork.cpp" />
     <ClCompile Include="ServerPacketIn.cpp" />
@@ -166,15 +171,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="ClientNetwork.h" />
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="FolderPathManager.h" />
+    <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameNetwork.h" />
     <ClInclude Include="GhostMapBlock.h" />
+    <ClInclude Include="GUIDUtils.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapBlock.h" />
     <ClInclude Include="MapBlockType.h" />
@@ -186,6 +194,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="RectCollider.h" />
     <ClInclude Include="Registration.h" />
+    <ClInclude Include="Team.h" />
+    <ClInclude Include="TimeoutCallback.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="ServerNetwork.h" />
     <ClInclude Include="ServerPacketIn.h" />

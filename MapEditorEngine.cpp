@@ -6,9 +6,15 @@
 
 void MapEditorEngine::processGhostBlockTypeSelecting()
 {
-	if (WindowInput::getKeyboardKeyState(sf::Keyboard::Key::Num1).isPressed)
+	int index = 0;
+	for (int key = sf::Keyboard::Key::Num1; key <= sf::Keyboard::Key::Num9; key++, index++)
 	{
-		_ghostBlock->setType(MapBlockType::metal);
+		if (WindowInput::getKeyboardKeyState((sf::Keyboard::Key)key).isPressed)
+		{
+			_ghostBlock->setType((MapBlockType)index);
+			std::cout << index << std::endl;
+			break;
+		}
 	}
 }
 
