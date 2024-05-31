@@ -6,10 +6,11 @@
 #include "ClientNetwork.h"
 #include "OfflineNetwork.h"
 
-GameEngine::GameEngine(const bool isServer, bool isOnline, const sf::Vector2u& size, const std::string& windowTitle) : Engine(size, windowTitle)
+GameEngine::GameEngine(const bool isServer, bool isOnline, const std::string& socket, const sf::Vector2u& size, const std::string& windowTitle) : Engine(size, windowTitle)
 {
 	_isServer = isServer;
 	_isOnline = isOnline;
+	_socket = socket;
 }
 
 GameEngine::~GameEngine() { }
@@ -34,7 +35,12 @@ void GameEngine::onStart()
 		_network = std::make_unique<OfflineNetwork>(_world.get(), _window.get());
 	}
 
-	_network->init();
+	std::string ip;;
+	size_t indexa = _socket.find(':');
+	if (indexa == _socket.npos) ip = "0.0.0.0";
+	else ip = _socket.substr(0, indexa);
+
+	_network->init(ip);
 	_network->run();
 }
 
@@ -51,5 +57,5 @@ void GameEngine::onRender(std::function<void(sf::Drawable& drawable)> render)
 
 void GameEngine::onEvent(sf::Event& event)
 {
-	
+
 }

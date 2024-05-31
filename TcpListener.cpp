@@ -169,6 +169,7 @@ void TcpListener::processAcceptedSocket(SOCKET acceptedSocket)
 	{
 		_clientsMutex.unlock();
 		std::cout << "Client with that guid exist." << std::endl;
+		closesocket(acceptedSocket);
 		return;
 	}
 	_clients[guid] = std::make_unique<Client>(guid, acceptedSocket, this);

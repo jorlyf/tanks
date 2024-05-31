@@ -3,7 +3,7 @@
 
 struct Packet
 {
-	const static unsigned int SIZE = 1024;
+	const static unsigned int SIZE = 4096;
 	int type;
 	char data[SIZE - sizeof(int)];
 

@@ -5,7 +5,7 @@
 
 struct ServerPacketOut
 {
-	const static unsigned int SIZE = 1024;
+	const static unsigned int SIZE = Packet::SIZE;
 	int type;
 	char data[SIZE - sizeof(int)];
 	std::set<GUID> recipientsGuids;

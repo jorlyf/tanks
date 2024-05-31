@@ -10,9 +10,10 @@ class GameEngine : public Engine
 	std::unique_ptr<GameNetwork> _network;
 	bool _isServer;
 	bool _isOnline;
+	std::string _socket;
 
 public:
-	GameEngine(const bool isServer, bool isOnline, const sf::Vector2u& size, const std::string& windowTitle = "Unnamed window");
+	GameEngine(const bool isServer, bool isOnline, const std::string& socket, const sf::Vector2u& size, const std::string& windowTitle = "Unnamed window");
 	virtual ~GameEngine();
 	virtual void onStart() override;
 	virtual void onUpdate() override;

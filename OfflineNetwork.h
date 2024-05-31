@@ -20,7 +20,7 @@ class OfflineNetwork : public GameNetwork
 public:
 	OfflineNetwork(World* world, Window* window);
 	~OfflineNetwork();
-	void init(const std::string& ip = "127.0.0.1", const unsigned int port = 5025);
+	void init(const std::string& ip = "0.0.0.0", const unsigned int port = 5025);
 	void update();
 	void run();
 	void stop();

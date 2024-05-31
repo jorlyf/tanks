@@ -38,7 +38,7 @@ struct PlayerState
 struct WorldState
 {
 	unsigned char playerCount;
-	PlayerState players[4];
+	PlayerState players[8];
 	unsigned char bulletCount;
-	BulletState bullets[16];
+	BulletState bullets[64];
 };
